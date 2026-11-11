@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REMAP TECH | Telemetria & Tuning Stats</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- GLOW BACKGROUND -->
+    <div class="bg-glow"></div>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-gauge-high logo-icon"></i>
+            <span>REMAP<strong class="neon-text">TECH</strong></span>
+        </div>
+
+        <!-- CONTROLES DE ACESSIBILIDADE -->
+        <div class="controls-bar">
+            <div class="font-controls">
+                <button id="btnFontDown" class="btn-ctrl" title="Diminuir Fonte"><i class="fa-solid fa-minus"></i>
+                    A-</button>
+                <button id="btnFontReset" class="btn-ctrl" title="Tamanho Padrão"><i
+                        class="fa-solid fa-rotate-left"></i></button>
+                <button id="btnFontUp" class="btn-ctrl" title="Aumentar Fonte">A+ <i
+                        class="fa-solid fa-plus"></i></button>
+            </div>
+            <button id="btnThemeToggle" class="btn-ctrl theme-btn" title="Alternar Tema">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
+                <span id="themeLabel">Modo Escuro</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-layout">
+
+        <!-- CARD DO FORMULÁRIO -->
+        <section class="glass-card">
+            <div class="card-header">
+                <i class="fa-solid fa-sliders icon-cyan"></i>
+                <h2>Parâmetros do Veículo</h2>
+            </div>
+
+            <form id="remapForm">
+                <div class="input-field">
+                    <label for="categoria"><i class="fa-solid fa-layer-group"></i> Categoria de Veículo</label>
+                    <select id="categoria" required>
+                        <option value="">-- Selecione o Tipo --</option>
+                        <option value="CAMIONETE">🛻 Camionetes & Pick-ups</option>
+                        <option value="ESPORTIVO">🏎️ Carros Esportivos / Hot Hatches</option>
+                    </select>
+                </div>
+
+                <div class="input-field">
+                    <label for="veiculo"><i class="fa-solid fa-car-side"></i> Modelo / Motorização</label>
+                    <select id="veiculo" disabled required>
+                        <option value="">Selecione primeiro a categoria</option>
+                    </select>
+                </div>
+
+                <div class="input-field">
+                    <label for="estagio"><i class="fa-solid fa-bolt-lightning"></i> Estágio Pretendido</label>
+                    <select id="estagio" required>
+                        <option value="STAGE1">Stage 1 (Apenas Reprogramação de Software)</option>
+                        <option value="STAGE2">Stage 2 (Software + Downpipe + Filtro Esportivo)</option>
+                        <option value="STAGE3">Stage 3 (Turbina Maior + Forjado + Bicos)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span>SIMULAR PREPARAÇÃO</span>
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- CARD DE RESULTADOS DE TELEMETRIA -->
+        <section class="glass-card result-card" id="resultCard">
+            <div class="card-header">
+                <i class="fa-solid fa-microchip icon-cyan"></i>
+                <h2>Telemetria de Desempenho</h2>
+            </div>
+
+            <div id="viabilidadeBadge" class="status-badge">---</div>
+
+            <p id="recomendacaoTexto" class="recomendacao-text"></p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">Potência Orig.</span>
+                    <span id="cvOrig" class="stat-val">--</span>
+                </div>
+                <div class="stat-box neon-border">
+                    <span class="stat-label">Ganho Est. (CV)</span>
+                    <span id="ganhoCv" class="stat-val neon-pink">--</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Torque Orig.</span>
+                    <span id="kgfmOrig" class="stat-val">--</span>
+                </div>
+                <div class="stat-box neon-border">
+                    <span class="stat-label">Ganho Est. (Kgfm)</span>
+                    <span id="ganhoKgfm" class="stat-val neon-pink">--</span>
+                </div>
+            </div>
+
+            <div class="custo-panel">
+                <div class="custo-info">
+                    <span>Investimento Estimado:</span>
+                    <strong id="custoEstimado">R$ 0,00</strong>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span id="alertaMecanico"></span>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
