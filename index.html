@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrezPreparações | Telemetria de Carros, Camionetes e Motos</title>
+    <title>FrezPreparações | Engenharia Eletrônica, Telemetria & Performance</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Barra Superior -->
-    <nav class="navbar">
+    <!-- Barra de Navegação Superior -->
+    <nav class="navbar" id="topo">
         <div class="nav-brand">
-            <div class="logo">FREZ<span>PREPARAÇÕES</span> <small>TELEMETRIA</small></div>
-            <div class="status-pill"><span class="dot"></span> <span id="status-texto">Java Online</span></div>
+            <div class="logo">FREZ<span>PREPARAÇÕES</span> <small>TELEMETRY LAB</small></div>
+            <div class="status-pill"><span class="dot"></span> <span id="status-texto">Servidor Operacional</span></div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#simulador" class="nav-anchor">Simulador</a>
+            <a href="#equipamentos" class="nav-anchor">Equipamentos</a>
+            <a href="#faq" class="nav-anchor">Perguntas Frequentes</a>
+            <a href="#blog" class="nav-anchor">Artigos Técnicos</a>
         </div>
 
         <div class="nav-tools">
-            <button id="btn-guia" class="btn-tool">📘 Guia de Stages</button>
-            <div class="font-controls" title="Ajustar tamanho da fonte">
+            <button id="btn-guia" class="btn-tool" title="Consultar níveis de preparação">📘 Guia de Stages</button>
+            <div class="font-controls" title="Ajustar tamanho da tipografia">
                 <button id="btn-font-dec" aria-label="Diminuir fonte">A-</button>
-                <button id="btn-font-reset" aria-label="Fonte normal">A</button>
+                <button id="btn-font-reset" aria-label="Tamanho padrão">A</button>
                 <button id="btn-font-inc" aria-label="Aumentar fonte">A+</button>
             </div>
-            <button id="btn-tema" class="btn-tool">☀️ Tema Claro</button>
+            <button id="btn-tema" class="btn-tool" aria-label="Alternar tema">☀️ Tema Claro</button>
         </div>
     </nav>
 
-    <!-- Cabeçalho Hero -->
+    <!-- Cabeçalho Principal -->
     <header class="hero">
-        <span class="hero-tag">ENGENHARIA DE PERFORMANCE & REMAP</span>
-        <h1>Simulador de Preparação <span>FrezPreparações</span></h1>
-        <p>Analise ganhos de Stage 1 a Stage 4, relação peso-potência e vida útil em camionetes, esportivos e motos.</p>
+        <div class="hero-tag">ENGENHARIA DE CALIBRAÇÃO ELETRÔNICA • AUTOMÓVEIS, PICAPES & MOTOCICLETAS</div>
+        <h1>Precisão Técnica & <span>Telemetria</span> de Alta Performance</h1>
+        <p>Configure projetos do Stage 1 ao Stage 4, selecione recursos avançados de pista e analise o índice de confiabilidade mecânica de cada conjunto.</p>
     </header>
 
-    <main class="container">
-        <!-- ETAPA 1: SELEÇÃO DO VEÍCULO -->
+    <main class="container" id="simulador">
+        <!-- ETAPA 01: SELEÇÃO DO VEÍCULO -->
         <section class="panel-box">
             <div class="section-head">
-                <span class="step-badge">1</span>
+                <span class="step-badge">ETAPA 01</span>
                 <div>
-                    <h2>Selecione a Categoria e o Modelo</h2>
-                    <p class="section-sub">Filtre entre 65 modelos de camionetes, carros esportivos e motos</p>
+                    <h2>Catálogo Técnico de Veículos (65 Modelos)</h2>
+                    <p class="section-sub">Selecione a categoria desejada ou pesquise pelo modelo e motorização</p>
                 </div>
             </div>
 
@@ -51,27 +56,25 @@
                 <button class="btn-filtro" data-cat="Esportivo">🏎️ Esportivos (25)</button>
                 <button class="btn-filtro" data-cat="Moto Esportiva">🏍️ Motos Esportivas (8)</button>
                 <button class="btn-filtro" data-cat="Moto de Trilha">🚵 Motos de Trilha (7)</button>
-                <button class="btn-filtro" data-cat="Compensa">✓ Só os que Compensam</button>
+                <button class="btn-filtro" data-cat="Compensa">✓ Viabilidade Recomendada</button>
             </div>
 
             <div class="busca-selecao-row">
-                <input type="text" id="input-busca" class="input-clean"
-                    placeholder="🔍 Digite o nome ou motor (ex: Hilux, GTI, CRF, S1000RR)...">
-                <select id="select-veiculo" class="select-clean">
+                <input type="text" id="input-busca" class="input-clean" placeholder="🔍 Pesquisar modelo ou motor (ex.: Hilux, GTI, CRF, S1000RR)...">
+                <select id="select-veiculo" class="select-clean" aria-label="Selecione o modelo do veículo">
                     <option value="">Carregando catálogo do servidor Java...</option>
                 </select>
-                <button id="btn-analisar" class="btn-primary">ANALISAR PROJETO</button>
+                <button id="btn-analisar" class="btn-primary">⚡ INICIAR TELEMETRIA</button>
             </div>
 
             <div class="atalhos-row">
-                <span class="atalho-lbl">Acesso rápido:</span>
+                <span class="atalho-lbl">Modelos em destaque:</span>
                 <div id="atalhos-lista" class="atalhos-chips"></div>
             </div>
         </section>
 
-        <!-- ETAPA 2: PAINEL DE RESULTADOS ORGANIZADO EM ABAS -->
+        <!-- ETAPA 02: PAINEL DE TELEMETRIA E CONFIGURAÇÃO -->
         <section id="painel-resultado" class="panel-box oculto">
-            <!-- Resumo do Veículo Selecionado -->
             <div class="veiculo-banner">
                 <div>
                     <div class="badges-row">
@@ -82,66 +85,67 @@
                     <h2 id="titulo-veiculo">Nome do Veículo</h2>
                     <p id="subtitulo-motor" class="motor-sub">Motorização</p>
                 </div>
-                <div id="selo-veredito" class="veredito-tag">VEREDITO</div>
+                <div id="selo-veredito" class="veredito-tag">PARECER TÉCNICO</div>
             </div>
 
             <!-- Seletor de Stage 1 a 4 -->
             <div class="stage-container">
                 <div class="stage-top-info">
-                    <span class="step-badge">2</span>
-                    <strong>Escolha o Nível de Preparação (Stage 1 a 4):</strong>
+                    <span class="step-badge">ETAPA 02</span>
+                    <strong>Selecione o Nível de Preparação (Stage 1 a Stage 4):</strong>
                 </div>
                 <div class="stages-4-grid">
                     <button class="btn-stage ativo" data-stage="1">
-                        <strong>Stage 1</strong>
+                        <strong>STAGE 1</strong>
                         <span>Software / ECU</span>
                     </button>
                     <button class="btn-stage" data-stage="2">
-                        <strong>Stage 2</strong>
-                        <span>Escape + Filtro</span>
+                        <strong>STAGE 2</strong>
+                        <span>Escapamento + Admissão</span>
                     </button>
                     <button class="btn-stage" data-stage="3">
-                        <strong>Stage 3</strong>
-                        <span>Turbina / Hardware</span>
+                        <strong>STAGE 3</strong>
+                        <span>Sobrealimentação / Hardware</span>
                     </button>
                     <button class="btn-stage" data-stage="4">
-                        <strong>Stage 4</strong>
-                        <span>Forjado / Pista</span>
+                        <strong>STAGE 4</strong>
+                        <span>Internos Forjados / Pista</span>
                     </button>
                 </div>
                 <p id="desc-stage-atual" class="stage-desc"></p>
             </div>
 
-            <!-- NAVEGAÇÃO POR ABAS (ORGANIZA AS INFORMAÇÕES SEM POLUIÇÃO) -->
+            <!-- Navegação por Abas -->
             <div class="tabs-bar" role="tablist">
-                <button class="tab-btn ativo" data-tab="tab-dyno">📊 Dinamômetro & Potência</button>
-                <button class="tab-btn" data-tab="tab-vidautil">🛡️ Vida Útil & Manutenção</button>
-                <button class="tab-btn" data-tab="tab-receita">🔧 Receita & Viabilidade</button>
-                <button class="tab-btn" data-tab="tab-comparar">⚔️ Comparar 2 Modelos</button>
+                <button class="tab-btn ativo" data-tab="tab-dyno">📊 Dinamômetro</button>
+                <button class="tab-btn" data-tab="tab-extras">⚙️ Recursos de Pista & ECU</button>
+                <button class="tab-btn" data-tab="tab-vidautil">🛡️ Confiabilidade & Manutenção</button>
+                <button class="tab-btn" data-tab="tab-receita">🔧 Parecer & Setup</button>
+                <button class="tab-btn" data-tab="tab-comparar">⚔️ Comparativo Técnico</button>
             </div>
 
             <!-- ABA 1: DINAMÔMETRO & POTÊNCIA -->
             <div id="tab-dyno" class="tab-content ativo">
                 <div class="kpis-grid">
                     <div class="kpi-card">
-                        <span>POTÊNCIA FINAL</span>
-                        <strong id="kpi-cv-final" class="blue-text">0 cv</strong>
+                        <span>POTÊNCIA ESTIMADA</span>
+                        <strong id="kpi-cv-final" class="blue-text mono">0 cv</strong>
                         <small id="kpi-cv-ganho">+0 cv (+0%)</small>
                     </div>
                     <div class="kpi-card">
-                        <span>TORQUE FINAL</span>
-                        <strong id="kpi-tq-final" class="blue-text">0 kgfm</strong>
+                        <span>TORQUE ESTIMADO</span>
+                        <strong id="kpi-tq-final" class="blue-text mono">0 kgfm</strong>
                         <small id="kpi-tq-ganho">+0 kgfm (+0%)</small>
                     </div>
                     <div class="kpi-card">
-                        <span>PESO / POTÊNCIA</span>
-                        <strong id="kpi-peso-pot">0.0 kg/cv</strong>
+                        <span>RELAÇÃO PESO / POTÊNCIA</span>
+                        <strong id="kpi-peso-pot" class="mono">0.0 kg/cv</strong>
                         <small id="kpi-peso-orig">Original: 0.0 kg/cv</small>
                     </div>
                     <div class="kpi-card">
-                        <span>CUSTO POR CAVALO</span>
-                        <strong id="kpi-custo-cv">R$ 0/cv</strong>
-                        <small id="kpi-investimento">Investimento: R$ 0</small>
+                        <span>INVESTIMENTO ESTIMADO</span>
+                        <strong id="kpi-investimento" class="mono">R$ 0</strong>
+                        <small id="kpi-custo-cv">R$ 0 por cv ganho</small>
                     </div>
                 </div>
 
@@ -149,54 +153,131 @@
                     <div class="dyno-card">
                         <div class="dyno-header">
                             <span>CURVA DE POTÊNCIA (CV)</span>
-                            <span id="badge-cv" class="gain-pill">+0 cv</span>
+                            <span id="badge-cv" class="gain-pill mono">+0 cv</span>
                         </div>
                         <div class="bar-group">
-                            <div class="bar-labels"><span>Original</span><strong id="val-cv-orig">0 cv</strong></div>
-                            <div class="bar-track">
-                                <div id="bar-cv-orig" class="bar-fill orig"></div>
-                            </div>
+                            <div class="bar-labels"><span>Original de Fábrica</span><strong id="val-cv-orig" class="mono">0 cv</strong></div>
+                            <div class="bar-track"><div id="bar-cv-orig" class="bar-fill orig"></div></div>
                         </div>
                         <div class="bar-group">
-                            <div class="bar-labels"><span id="lbl-stage-cv">Stage 1</span><strong id="val-cv-prep">0
-                                    cv</strong></div>
-                            <div class="bar-track">
-                                <div id="bar-cv-prep" class="bar-fill prep"></div>
-                            </div>
+                            <div class="bar-labels"><span id="lbl-stage-cv">Stage 1</span><strong id="val-cv-prep" class="mono">0 cv</strong></div>
+                            <div class="bar-track"><div id="bar-cv-prep" class="bar-fill prep"></div></div>
                         </div>
                     </div>
 
                     <div class="dyno-card">
                         <div class="dyno-header">
                             <span>CURVA DE TORQUE (KGFM)</span>
-                            <span id="badge-tq" class="gain-pill">+0 kgfm</span>
+                            <span id="badge-tq" class="gain-pill mono">+0 kgfm</span>
                         </div>
                         <div class="bar-group">
-                            <div class="bar-labels"><span>Original</span><strong id="val-tq-orig">0 kgfm</strong></div>
-                            <div class="bar-track">
-                                <div id="bar-tq-orig" class="bar-fill orig"></div>
-                            </div>
+                            <div class="bar-labels"><span>Original de Fábrica</span><strong id="val-tq-orig" class="mono">0 kgfm</strong></div>
+                            <div class="bar-track"><div id="bar-tq-orig" class="bar-fill orig"></div></div>
                         </div>
                         <div class="bar-group">
-                            <div class="bar-labels"><span id="lbl-stage-tq">Stage 1</span><strong id="val-tq-prep">0
-                                    kgfm</strong></div>
-                            <div class="bar-track">
-                                <div id="bar-tq-prep" class="bar-fill prep"></div>
-                            </div>
+                            <div class="bar-labels"><span id="lbl-stage-tq">Stage 1</span><strong id="val-tq-prep" class="mono">0 kgfm</strong></div>
+                            <div class="bar-track"><div id="bar-tq-prep" class="bar-fill prep"></div></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ABA 2: VIDA ÚTIL & MANUTENÇÃO -->
+            <!-- ABA 2: RECURSOS DE PISTA & SOLUÇÕES ELETRÔNICAS -->
+            <div id="tab-extras" class="tab-content oculto">
+                <div class="extras-intro">
+                    <p>Selecione os módulos adicionais desejados. O investimento estimado e o índice de confiabilidade mecânica são recalculados automaticamente.</p>
+                </div>
+
+                <div class="extras-2-col">
+                    <div class="extras-group">
+                        <h3>🏁 Recursos Adicionais de Pista</h3>
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="450" data-desgaste="4" data-nome="Pops and Bangs">
+                            <div>
+                                <strong>Pops and Bangs (Estouro na desaceleração)</strong>
+                                <small>Atraso controlado do ponto de ignição ao desacelerar. Requer escapamento livre de catalisador.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 450</span>
+                        </label>
+
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="400" data-desgaste="3" data-nome="Hardcut Limiter">
+                            <div>
+                                <strong>Hardcut (Corte de giro rápido)</strong>
+                                <small>Limitador de rotação de atuação seca (diesel e gasolina) para aplicações esportivas e de pista.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 400</span>
+                        </label>
+
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="500" data-desgaste="2" data-nome="Flat Foot Shift">
+                            <div>
+                                <strong>Flat Foot Shift (Troca sem alívio de pedal)</strong>
+                                <small>Mantém a pressão do turbocompressor durante as trocas de marcha em transmissões manuais.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 500</span>
+                        </label>
+
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="650" data-desgaste="1" data-nome="Quickshifter">
+                            <div>
+                                <strong>Quickshifter Eletrônico (Motocicletas)</strong>
+                                <small>Interrupção momentânea de ignição para engate ascendente de marchas sem acionamento da embreagem.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 650</span>
+                        </label>
+                    </div>
+
+                    <div class="extras-group">
+                        <h3>🔌 Soluções Eletrônicas (Uso Off-Road / Competição)</h3>
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="700" data-desgaste="-2" data-nome="Solução DPF e EGR">
+                            <div>
+                                <strong>Solução DPF & Válvula EGR (Diesel Off-Road)</strong>
+                                <small>Previne obstrução do filtro de partículas e acúmulo de carbonização na admissão fora de estrada.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 700</span>
+                        </label>
+
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="850" data-desgaste="0" data-nome="Solução AdBlue / Arla 32">
+                            <div>
+                                <strong>Solução AdBlue / Arla 32 (Competição / Rural)</strong>
+                                <small>Evita limitação de potência por falhas nos sensores de ureia em operações rurais ou fechadas.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 850</span>
+                        </label>
+
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="300" data-desgaste="1" data-nome="Remoção Limitador Vmax">
+                            <div>
+                                <strong>Remoção de Limitador de Velocidade (Vmax Off)</strong>
+                                <small>Libera o limitador eletrônico de velocidade máxima estabelecido originalmente pelo fabricante.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 300</span>
+                        </label>
+
+                        <label class="switch-card">
+                            <input type="checkbox" class="extra-check" data-preco="250" data-desgaste="0" data-nome="Correção Delay Pedal">
+                            <div>
+                                <strong>Correção de Atraso no Pedal (Throttle Response)</strong>
+                                <small>Calibração direta no mapa do corpo de borboleta eletrônico para resposta imediata ao comando.</small>
+                            </div>
+                            <span class="preco-tag mono">+R$ 250</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABA 3: CONFIABILIDADE & MANUTENÇÃO -->
             <div id="tab-vidautil" class="tab-content oculto">
                 <div class="vu-panel">
                     <div class="vu-top">
                         <div>
-                            <h3>Índice de Durabilidade Mecânica</h3>
-                            <p>Estimativa de longevidade do motor, transmissão e sistema de sobrealimentação</p>
+                            <h3>Índice de Confiabilidade & Vida Útil Mecânica</h3>
+                            <p>Estimativa calculada com base no Stage selecionado e nos recursos eletrônicos ativos</p>
                         </div>
-                        <span id="vu-nota" class="vu-pill">96% DE VIDA ÚTIL</span>
+                        <span id="vu-nota" class="vu-pill mono">96% DE CONFIABILIDADE</span>
                     </div>
 
                     <div class="vu-track">
@@ -205,84 +286,201 @@
 
                     <div class="vu-cards-3">
                         <div class="vu-info-box">
-                            <strong>🛢️ Troca de Óleo</strong>
+                            <strong>🛢️ Intervalo de Lubrificação</strong>
                             <p id="vu-oleo">A cada 8.000 km</p>
                         </div>
                         <div class="vu-info-box">
-                            <strong>⚠️ Ponto de Atenção</strong>
-                            <p id="vu-alerta">Componentes originais suportam com folga.</p>
+                            <strong>⚠️ Recomendação Preventiva</strong>
+                            <p id="vu-alerta">Componentes originais operam dentro da margem de segurança.</p>
                         </div>
                         <div class="vu-info-box">
-                            <strong>⛽ Combustível Ideal</strong>
+                            <strong>⛽ Combustível Especificado</strong>
                             <p id="vu-combustivel">Gasolina Aditivada / Diesel S10</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ABA 3: RECEITA & VIABILIDADE -->
+            <!-- ABA 4: PARECER & SETUP -->
             <div id="tab-receita" class="tab-content oculto">
                 <div class="receita-grid">
                     <div class="receita-card">
-                        <h3>📋 Parecer da Engenharia FrezPreparações</h3>
+                        <h3>📋 Parecer Técnico FrezPreparações</h3>
                         <p id="texto-motivo"></p>
                     </div>
                     <div class="receita-card highlight">
-                        <h3>🔧 Setup e Peças Recomendadas</h3>
+                        <h3>🔧 Configuração e Componentes Recomendados</h3>
                         <p id="texto-setup"></p>
                     </div>
                 </div>
             </div>
 
-            <!-- ABA 4: COMPARADOR LADO A LADO -->
+            <!-- ABA 5: COMPARATIVO TÉCNICO -->
             <div id="tab-comparar" class="tab-content oculto">
                 <div class="comp-controls">
-                    <select id="comp-veiculo-a" class="select-clean"></select>
+                    <select id="comp-veiculo-a" class="select-clean" aria-label="Primeiro veículo para comparação"></select>
                     <span class="vs-tag">VS</span>
-                    <select id="comp-veiculo-b" class="select-clean"></select>
+                    <select id="comp-veiculo-b" class="select-clean" aria-label="Segundo veículo para comparação"></select>
                 </div>
                 <div id="comp-resultado" class="comp-duelo-grid"></div>
             </div>
         </section>
+
+        <!-- SEÇÃO: EQUIPAMENTOS ORIGINAIS HOMOLOGADOS -->
+        <section id="equipamentos" class="panel-box">
+            <div class="section-head">
+                <span class="step-badge">LAB</span>
+                <div>
+                    <h2>Laboratório & Equipamentos Originais Homologados</h2>
+                    <p class="section-sub">Leitura e gravação segura de centrais eletrônicas com verificação automática de Checksum</p>
+                </div>
+            </div>
+
+            <div class="tools-grid-4">
+                <div class="tool-badge-card">
+                    <span class="tool-origin">ITÁLIA • MASTER</span>
+                    <strong>Alientech KESS3</strong>
+                    <p>Programação via OBD2, Bench e Boot Mode com protocolo oficial e proteção contra falhas de escrita.</p>
+                </div>
+                <div class="tool-badge-card">
+                    <span class="tool-origin">ITÁLIA • TELEMETRIA</span>
+                    <strong>DimSport New Genius</strong>
+                    <p>Interface dedicada para picapes diesel, utilitários e calibração precisa de mapas de injeção.</p>
+                </div>
+                <div class="tool-badge-card">
+                    <span class="tool-origin">EUA • V8 & TURBO</span>
+                    <strong>HP Tuners MPVI3</strong>
+                    <p>Diagnóstico avançado, datalogger de alta velocidade e calibração detalhada para motores V8 e turbo.</p>
+                </div>
+                <div class="tool-badge-card">
+                    <span class="tool-origin">ALEMANHA • ENGENHARIA</span>
+                    <strong>EVC WinOLS 5</strong>
+                    <p>Edição hexadecimal mapa a mapa desenvolvida sob medida para cada projeto em dinamômetro.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: PERGUNTAS FREQUENTES (FAQ) -->
+        <section id="faq" class="panel-box">
+            <div class="section-head">
+                <span class="step-badge">FAQ</span>
+                <div>
+                    <h2>Perguntas Frequentes & Segurança Mecânica</h2>
+                    <p class="section-sub">Esclarecimentos técnicos sobre garantia, reversibilidade e consumo</p>
+                </div>
+            </div>
+
+            <div class="faq-list">
+                <details class="faq-item" open>
+                    <summary>1. A reprogramação eletrônica anula a garantia de fábrica do veículo?</summary>
+                    <p>A concessionária pode questionar a garantia do conjunto motriz caso identifique alteração no software da central. Contudo, utilizamos protocolos modernos via Bench e OBD que preservam os contadores originais e permitem restaurar o arquivo de fábrica antes das revisões periódicas.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>2. O procedimento é totalmente reversível?</summary>
+                    <p>Sim. Antes de qualquer modificação, realizamos a leitura e o backup integral do arquivo original da central (ECU), mantendo-o armazenado em nosso servidor vinculado ao número do chassi. Caso deseje retornar o veículo à configuração original, o procedimento é realizado sem custos adicionais.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>3. O remap aumenta o consumo de combustível?</summary>
+                    <p>Em condução moderada e velocidade constante de rodovia, o consumo tende a <strong>reduzir entre 5% e 10%</strong> (especialmente em camionetes turbo diesel), pois o motor atinge o torque necessário em rotações inferiores. O consumo eleva-se apenas quando toda a potência adicional é solicitada em acelerações plenas.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>4. Vocês utilizam mapas prontos ("enlatados") ou calibração individualizada?</summary>
+                    <p>Realizamos <strong>calibração individualizada</strong>. Cada motor apresenta características próprias de desgaste, combustível regional e componentes instalados. Analisamos os parâmetros de temperatura de admissão, pressão de turbo e sonda lambda de cada veículo para ajustar os mapas com precisão.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>5. Quais equipamentos e softwares originais são utilizados na oficina?</summary>
+                    <p>Operamos exclusivamente com interfaces licenciadas: <strong>Alientech KESS3, DimSport New Genius, HP Tuners MPVI3 e EVC WinOLS 5</strong>. O uso de equipamentos originais assegura a integridade da memória da ECU e evita danos eletrônicos irreversíveis.</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: ARTIGOS TÉCNICOS -->
+        <section id="blog" class="panel-box">
+            <div class="section-head">
+                <span class="step-badge">DOC</span>
+                <div>
+                    <h2>Artigos Técnicos & Recomendações de Oficina</h2>
+                    <p class="section-sub">Publicações elaboradas pela equipe de engenharia da FrezPreparações</p>
+                </div>
+            </div>
+
+            <div class="blog-grid-3">
+                <article class="blog-card">
+                    <span class="blog-tag">COMBUSTÍVEL</span>
+                    <h3>Qual combustível utilizar após o Stage 1?</h3>
+                    <p>Compreenda como a octanagem (Podium, Octapro ou Etanol) previne a pré-detonação e permite extrair o rendimento ideal do motor.</p>
+                    <button class="btn-ler-artigo" data-artigo="combustivel">Ler artigo completo →</button>
+                </article>
+
+                <article class="blog-card">
+                    <span class="blog-tag">MANUTENÇÃO</span>
+                    <h3>Velas e bobinas: quando substituir antes do remap?</h3>
+                    <p>O aumento da pressão de sobrealimentação exige maior capacidade de centelha. Saiba identificar falhas e escolher o grau térmico adequado.</p>
+                    <button class="btn-ler-artigo" data-artigo="velas">Ler artigo completo →</button>
+                </article>
+
+                <article class="blog-card">
+                    <span class="blog-tag">ELETRÔNICA</span>
+                    <h3>Diferença entre Piggyback e Remap de ECU</h3>
+                    <p>Módulo externo acoplado aos sensores ou reprogramação direta da central? Compare segurança operacional, limites e resultados.</p>
+                    <button class="btn-ler-artigo" data-artigo="piggyback">Ler artigo completo →</button>
+                </article>
+            </div>
+        </section>
     </main>
+
+    <!-- Botão Flutuante Voltar ao Topo -->
+    <button id="btn-voltar-topo" class="btn-topo oculto" title="Voltar ao topo da página" aria-label="Voltar ao topo">
+        ↑ Topo
+    </button>
 
     <!-- Modal Guia de Stages -->
     <div id="modal-guia" class="modal-overlay oculto">
         <div class="modal-card">
             <div class="modal-top">
-                <h3>📘 Guia Rápido de Preparação (Stages 1 a 4)</h3>
+                <h3>📘 Guia Técnico de Preparação (Stages 1 a 4)</h3>
                 <button id="btn-fechar-guia" class="btn-close">✕</button>
             </div>
             <div class="modal-list">
                 <div class="guia-row">
                     <strong>Stage 1 — Reprogramação Eletrônica</strong>
-                    <p>Calibração via porta OBD2 ou bancada. Ajusta ponto, mistura e pressão sem trocar peças físicas.
-                        Preserva ~96% da vida útil.</p>
+                    <p>Calibração via OBD2 ou bancada. Ajusta ponto de ignição, mistura e pressão sem alteração de peças físicas, preservando cerca de 96% da vida útil original.</p>
                 </div>
                 <div class="guia-row">
-                    <strong>Stage 2 — Escape + Admissão</strong>
-                    <p>Instalação de Downpipe/Escape esportivo e filtro de alto fluxo. Reduz contrapressão e temperatura
-                        de trabalho.</p>
+                    <strong>Stage 2 — Escapamento + Admissão</strong>
+                    <p>Instalação de downpipe/escapamento esportivo e filtro de ar de alto fluxo. Reduz a contrapressão e a temperatura dos gases de escape.</p>
                 </div>
                 <div class="guia-row">
                     <strong>Stage 3 — Upgrade de Turbina / Compressor</strong>
-                    <p>Troca da turbina original por modelo maior ou híbrido, intercooler frontal e bicos injetores de
-                        maior vazão.</p>
+                    <p>Substituição do conjunto sobrealimentador por modelo maior ou híbrido, intercooler frontal e bicos injetores de maior vazão.</p>
                 </div>
                 <div class="guia-row">
                     <strong>Stage 4 — Motor Forjado & Competição</strong>
-                    <p>Pistões, bielas e prisioneiros forjados, reforço de câmbio/embreagem e eletrônica programável
-                        para pista.</p>
+                    <p>Instalação de pistões, bielas e prisioneiros forjados, reforço de transmissão e eletrônica dedicada para pista e competição.</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal Leitura de Artigos -->
+    <div id="modal-artigo" class="modal-overlay oculto">
+        <div class="modal-card">
+            <div class="modal-top">
+                <h3 id="artigo-titulo">Título do Artigo</h3>
+                <button id="btn-fechar-artigo" class="btn-close">✕</button>
+            </div>
+            <div id="artigo-corpo" class="artigo-texto"></div>
+        </div>
+    </div>
+
     <footer class="footer">
-        <p>FrezPreparações • Sistema Web & Servidor Java • Engenharia de Performance</p>
+        <p>FrezPreparações • Engenharia Eletrônica & Dinamômetro • Todos os direitos reservados</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>

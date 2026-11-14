@@ -390,8 +390,8 @@ public class ServidorRemap {
                 "Stage 2: Escape completo + Filtro de espuma + Remap.");
         add("lander_250", "Yamaha XTZ 250 Lander / Ténéré", "Moto de Trilha", "249cc Monocilíndrico Flex",
                 "Corrente On/Off", 153,
-                21, 22.5, 24, 27, 32, 2.1, 2.25, 2.4, 2.7, 3.1, false,
-                "Moto trail focada em durabilidade e economia. Ganho de 1,5 cv no remap não justifica o custo.",
+                21, 23, 24, 27, 32, 2.1, 2.25, 2.4, 2.7, 3.1, false,
+                "Moto trail focada em durabilidade e economia. Ganho de 2 cv no remap não justifica o custo.",
                 "Não compensa preparar motor. Invista em pneus cravo e suspensão.");
         add("r1250gs", "BMW R 1250 GS Adventure (Big Trail)", "Moto de Trilha", "1.254cc Boxer ShiftCam", "Cardã", 268,
                 136, 146, 154, 168, 185, 14.5, 15.6, 16.5, 17.8, 19.5, true,

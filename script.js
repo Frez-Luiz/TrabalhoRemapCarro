@@ -6,32 +6,57 @@ let tamanhoFonte = 16;
 
 const dadosStages = {
     1: {
-        texto: 'Stage 1: Calibração eletrônica da central (ECU). Mantém escapamento, filtro e motor 100% originais.',
+        texto: 'Stage 1: Calibração eletrônica da central (ECU). Mantém o escapamento, o sistema de admissão e os componentes internos originais.',
         vidaUtilBase: 96,
         custoBase: 2000,
-        oleo: 'Troca no prazo original ou a cada 8.000 km (motos: 3.000 km)',
-        alerta: 'Conjunto mecânico original trabalha dentro da margem de segurança de fábrica.'
+        oleo: 'Troca no prazo especificado pelo fabricante ou a cada 8.000 km (motocicletas: 3.000 km)',
+        alerta: 'O conjunto mecânico original opera rigorosamente dentro da margem térmica e de pressão segura.'
     },
     2: {
-        texto: 'Stage 2: Remap + Escapamento/Downpipe esportivo + Filtro de ar de alto fluxo. Melhora resposta e reduz temperatura.',
+        texto: 'Stage 2: Reprogramação eletrônica associada à instalação de downpipe/escapamento esportivo e filtro de ar de alto fluxo.',
         vidaUtilBase: 89,
         custoBase: 4500,
-        oleo: 'Reduzir intervalo de troca em 20% com óleo 100% sintético',
-        alerta: 'Mantenha o filtro de ar sempre limpo e utilize combustível de boa procedência.'
+        oleo: 'Reduzir o intervalo de troca em 20%, utilizando lubrificante 100% sintético homologado',
+        alerta: 'Manter a higienização periódica do filtro de ar e utilizar combustível de alta octanagem.'
     },
     3: {
-        texto: 'Stage 3: Upgrade de Turbina/Compressor (carros/camionetes) ou Comandos/Bicos/Central racing (motos).',
+        texto: 'Stage 3: Substituição do turbocompressor/compressor por unidade de maior vazão (ou comandos e injetores em motocicletas).',
         vidaUtilBase: 73,
         custoBase: 15500,
-        oleo: 'A cada 5.000 km (motos: a cada 15h de uso ou 1.500 km)',
-        alerta: 'Exige reforço de embreagem/câmbio e sistema de arrefecimento revisado.'
+        oleo: 'A cada 5.000 km (motocicletas: a cada 15 horas de operação ou 1.500 km)',
+        alerta: 'Recomenda-se calibração da transmissão ou reforço de embreagem e revisão do sistema de arrefecimento.'
     },
     4: {
-        texto: 'Stage 4: Preparação extrema com internos forjados (pistões/bielas) e acerto voltado para pista e competição.',
+        texto: 'Stage 4: Preparação de alta performance com componentes internos forjados (pistões e bielas) e calibração dedicada para pista.',
         vidaUtilBase: 54,
         custoBase: 35000,
-        oleo: 'A cada 3.000 km ou após cada evento de pista/trilha',
-        alerta: 'Manutenção preventiva rigorosa; desgaste acelerado de transmissão e pneus.'
+        oleo: 'A cada 3.000 km ou imediatamente após eventos de pista e competição',
+        alerta: 'Exige manutenção preventiva rigorosa devido ao desgaste acelerado de transmissão e pneus.'
+    }
+};
+
+const artigosBlog = {
+    combustivel: {
+        titulo: '⛽ Qual combustível utilizar após o Stage 1?',
+        html: `
+            <p><strong>1. Motores Turbo a Gasolina ou Flex:</strong> Ao elevar a pressão de sobrealimentação e otimizar o avanço de ignição, a temperatura na câmara de combustão aumenta. O uso de gasolina comum pode provocar <em>pré-detonação</em>, levando a central eletrônica a recuar o ponto e limitar a potência.</p>
+            <p><strong>Recomendação Técnica:</strong> Utilize preferencialmente <strong>Gasolina de Alta Octanagem (Podium ou Octapro)</strong> ou <strong>Etanol</strong>, que apresenta elevada resistência à detonação e auxilia no resfriamento da admissão.</p>
+            <p><strong>2. Camionetes Turbo Diesel:</strong> Abasteça exclusivamente com <strong>Diesel S10 aditivado</strong> de procedência comprovada e substitua o filtro de combustível a cada 10.000 km para preservar o sistema de injeção.</p>
+        `
+    },
+    velas: {
+        titulo: '⚡ Velas e bobinas: quando substituir antes do remap?',
+        html: `
+            <p>Com maior massa de ar e combustível comprimida no interior dos cilindros, a resistência elétrica para a formação da centelha aumenta significativamente. Velas ou bobinas desgastadas que operavam normalmente no mapa original podem apresentar falhas de ignição (<em>misfire</em>) em plena carga.</p>
+            <p><strong>Diretriz FrezPreparações:</strong> Caso as velas possuam mais de <strong>25.000 km</strong> de uso, recomenda-se a substituição antes da reprogramação. Para projetos Stage 2 e Stage 3, indicamos velas um grau térmico mais frias (como NGK Iridium Grau 8 ou 9) para melhor dissipação térmica.</p>
+        `
+    },
+    piggyback: {
+        titulo: '🔌 Diferença entre Piggyback e Remap de ECU',
+        html: `
+            <p><strong>Piggyback (Módulo Externo):</strong> Dispositivo conectado aos chicotes dos sensores (como MAP e Boost) que intercepta e modifica os sinais enviados à central original para elevar a pressão do turbo. Embora seja de fácil remoção, não gerencia mapas de ponto de ignição, limitadores nem calibração de câmbio.</p>
+            <p><strong>Remap de ECU (Reprogramação Direta):</strong> Consiste na leitura e calibração direta do software da unidade de controle eletrônico, ajustando dezenas de parâmetros (pressão, mistura ar/combustível, ponto, limitadores e resposta do acelerador) de forma integrada, segura e precisa.</p>
+        `
     }
 };
 
@@ -52,7 +77,22 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// --- 2. TEMA CLARO / ESCURO & FONTE ---
+// --- 2. BOTÃO VOLTAR AO TOPO ---
+const btnVoltarTopo = document.getElementById('btn-voltar-topo');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 320) {
+        btnVoltarTopo.classList.remove('oculto');
+    } else {
+        btnVoltarTopo.classList.add('oculto');
+    }
+});
+
+btnVoltarTopo.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// --- 3. TEMA CLARO / ESCURO & FONTE ---
 function carregarPreferencias() {
     const tema = localStorage.getItem('frez_tema') || 'dark';
     document.documentElement.setAttribute('data-theme', tema);
@@ -90,7 +130,7 @@ function aplicarFonte() {
     localStorage.setItem('frez_fonte', tamanhoFonte);
 }
 
-// --- 3. MODAL GUIA ---
+// --- 4. MODAIS (GUIA E ARTIGOS) ---
 document.getElementById('btn-guia').addEventListener('click', () => {
     document.getElementById('modal-guia').classList.remove('oculto');
 });
@@ -98,12 +138,26 @@ document.getElementById('btn-fechar-guia').addEventListener('click', () => {
     document.getElementById('modal-guia').classList.add('oculto');
 });
 
-// --- 4. FILTROS, BUSCA E ATALHOS ---
+document.querySelectorAll('.btn-ler-artigo').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const art = artigosBlog[btn.dataset.artigo];
+        if (art) {
+            document.getElementById('artigo-titulo').textContent = art.titulo;
+            document.getElementById('artigo-corpo').innerHTML = art.html;
+            document.getElementById('modal-artigo').classList.remove('oculto');
+        }
+    });
+});
+document.getElementById('btn-fechar-artigo').addEventListener('click', () => {
+    document.getElementById('modal-artigo').classList.add('oculto');
+});
+
+// --- 5. FILTROS, BUSCA E ATALHOS ---
 function atualizarSelect() {
     const select = document.getElementById('select-veiculo');
     const busca = document.getElementById('input-busca').value.toLowerCase().trim();
 
-    select.innerHTML = '<option value="">-- Escolha um modelo para simular --</option>';
+    select.innerHTML = '<option value="">-- Selecione um modelo para análise --</option>';
 
     const filtrados = frotaCompleta.filter(v => {
         const okCat =
@@ -161,7 +215,7 @@ function gerarAtalhos() {
     });
 }
 
-// --- 5. SISTEMA DE ABAS DO PAINEL DE RESULTADOS ---
+// --- 6. ABAS DO PAINEL DE RESULTADOS ---
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('ativo'));
@@ -172,11 +226,17 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     });
 });
 
-// --- 6. SIMULAÇÃO, STAGES 1 A 4 E VIDA ÚTIL ---
+document.querySelectorAll('.extra-check').forEach(chk => {
+    chk.addEventListener('change', () => {
+        if (veiculoAtual) renderizarTudo();
+    });
+});
+
+// --- 7. SIMULAÇÃO, STAGES, EXTRAS E CONFIABILIDADE ---
 document.getElementById('btn-analisar').addEventListener('click', () => {
     const id = document.getElementById('select-veiculo').value;
     if (!id) {
-        alert('Por favor, selecione um modelo na lista!');
+        alert('Por favor, selecione um modelo na lista.');
         return;
     }
     veiculoAtual = frotaCompleta.find(v => v.id === id);
@@ -203,16 +263,15 @@ function renderizarTudo() {
     const painel = document.getElementById('painel-resultado');
     painel.classList.remove('oculto');
 
-    // Cabeçalho
     document.getElementById('tag-categoria').textContent = veiculoAtual.categoria;
     document.getElementById('tag-tracao').textContent = `TRAÇÃO: ${veiculoAtual.tracao}`;
     document.getElementById('tag-peso').textContent = `${veiculoAtual.pesoKg} KG`;
     document.getElementById('titulo-veiculo').textContent = veiculoAtual.nome;
-    document.getElementById('subtitulo-motor').textContent = `Motor: ${veiculoAtual.motor}`;
+    document.getElementById('subtitulo-motor').textContent = `Motorização: ${veiculoAtual.motor}`;
 
     const selo = document.getElementById('selo-veredito');
     if (veiculoAtual.compensa) {
-        selo.textContent = '✓ COMPENSA PREPARAR';
+        selo.textContent = '✓ VIABILIDADE RECOMENDADA';
         selo.className = 'veredito-tag sim';
     } else {
         selo.textContent = '✕ BAIXO CUSTO-BENEFÍCIO';
@@ -231,12 +290,18 @@ function renderizarTudo() {
     const pesoPotOrig = (veiculoAtual.pesoKg / veiculoAtual.cvOrig).toFixed(2);
     const pesoPotPrep = (veiculoAtual.pesoKg / prep.cv).toFixed(2);
 
-    // Ajuste de custo base se for moto (peças costumam ser mais baratas que de carro/camionete)
-    const isMoto = veiculoAtual.categoria.includes('Moto');
-    const custoEst = isMoto ? Math.round(stgInfo.custoBase * 0.65) : stgInfo.custoBase;
-    const custoPorCv = ganhoCv > 0 ? Math.round(custoEst / ganhoCv) : 0;
+    let custoExtras = 0;
+    let desgasteExtras = 0;
+    document.querySelectorAll('.extra-check:checked').forEach(chk => {
+        custoExtras += parseInt(chk.dataset.preco);
+        desgasteExtras += parseInt(chk.dataset.desgaste);
+    });
 
-    // KPIs
+    const isMoto = veiculoAtual.categoria.includes('Moto');
+    const custoBase = isMoto ? Math.round(stgInfo.custoBase * 0.65) : stgInfo.custoBase;
+    const custoTotal = custoBase + custoExtras;
+    const custoPorCv = ganhoCv > 0 ? Math.round(custoTotal / ganhoCv) : 0;
+
     document.getElementById('kpi-cv-final').textContent = `${prep.cv} cv`;
     document.getElementById('kpi-cv-ganho').textContent = `+${ganhoCv} cv (+${pctCv}%)`;
 
@@ -246,10 +311,9 @@ function renderizarTudo() {
     document.getElementById('kpi-peso-pot').textContent = `${pesoPotPrep} kg/cv`;
     document.getElementById('kpi-peso-orig').textContent = `Original: ${pesoPotOrig} kg/cv`;
 
-    document.getElementById('kpi-custo-cv').textContent = `R$ ${custoPorCv}/cv`;
-    document.getElementById('kpi-investimento').textContent = `Investimento est.: R$ ${custoEst.toLocaleString('pt-BR')}`;
+    document.getElementById('kpi-investimento').textContent = `R$ ${custoTotal.toLocaleString('pt-BR')}`;
+    document.getElementById('kpi-custo-cv').textContent = `R$ ${custoPorCv} por cv ganho`;
 
-    // Barras de Dinamômetro (escala dinâmica baseada no Stage 4 do próprio veículo para ficar sempre visualmente claro)
     const tetoCv = Math.ceil(veiculoAtual.cvStg4 * 1.1);
     const tetoTq = Math.ceil(veiculoAtual.tqStg4 * 1.1);
 
@@ -269,16 +333,15 @@ function renderizarTudo() {
     document.getElementById('bar-tq-orig').style.width = `${Math.min((veiculoAtual.tqOrig / tetoTq) * 100, 100)}%`;
     document.getElementById('bar-tq-prep').style.width = `${Math.min((prep.tq / tetoTq) * 100, 100)}%`;
 
-    // Aba 2: Vida Útil
-    let vu = stgInfo.vidaUtilBase;
+    let vu = stgInfo.vidaUtilBase - desgasteExtras;
     if (!veiculoAtual.compensa && stageAtual >= 2) vu -= 12;
     if (parseFloat(pctCv) > 70) vu -= 5;
-    vu = Math.max(vu, 35);
+    vu = Math.min(Math.max(vu, 30), 99);
 
     const vuBarra = document.getElementById('vu-barra');
     const vuNota = document.getElementById('vu-nota');
     vuBarra.style.width = `${vu}%`;
-    vuNota.textContent = `${vu}% DE VIDA ÚTIL ESTIMADA`;
+    vuNota.textContent = `${vu}% DE CONFIABILIDADE ESTIMADA`;
 
     if (vu >= 85) {
         vuBarra.style.backgroundColor = 'var(--green)';
@@ -298,19 +361,16 @@ function renderizarTudo() {
     document.getElementById('vu-alerta').textContent = stgInfo.alerta;
     document.getElementById('vu-combustivel').textContent =
         veiculoAtual.motor.toLowerCase().includes('diesel')
-            ? 'Diesel S10 aditivado de alta qualidade'
+            ? 'Diesel S10 aditivado de procedência comprovada'
             : (stageAtual >= 2 ? 'Gasolina Podium / Octapro ou Etanol' : 'Gasolina Aditivada');
 
-    // Aba 3: Receita
     document.getElementById('texto-motivo').textContent = veiculoAtual.motivo;
     document.getElementById('texto-setup').textContent = veiculoAtual.recomendacao;
 
-    // Atualiza Comparador caso esteja aberto
     atualizarComparador();
-    painel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// --- 7. COMPARADOR ---
+// --- 8. COMPARATIVO TÉCNICO ---
 function preencherComparador() {
     const selA = document.getElementById('comp-veiculo-a');
     const selB = document.getElementById('comp-veiculo-b');
@@ -321,8 +381,8 @@ function preencherComparador() {
     });
 
     if (frotaCompleta.length > 26) {
-        selA.selectedIndex = 0;  // Hilux
-        selB.selectedIndex = 25; // Golf GTI
+        selA.selectedIndex = 0;
+        selB.selectedIndex = 25;
     }
 
     selA.addEventListener('change', atualizarComparador);
@@ -342,11 +402,11 @@ function atualizarComparador() {
             <div class="comp-card">
                 <h4>${v.nome}</h4>
                 <div class="comp-line"><span>Categoria:</span><strong>${v.categoria}</strong></div>
-                <div class="comp-line"><span>Potência Stage ${stageAtual}:</span><strong>${d.cv} cv (+${d.cv - v.cvOrig})</strong></div>
-                <div class="comp-line"><span>Torque Stage ${stageAtual}:</span><strong>${d.tq} kgfm (+${(d.tq - v.tqOrig).toFixed(1)})</strong></div>
-                <div class="comp-line"><span>Peso / Potência:</span><strong>${(v.pesoKg / d.cv).toFixed(2)} kg/cv</strong></div>
-                <div class="comp-line"><span>Vida Útil:</span><strong>${vu}%</strong></div>
-                <div class="comp-line"><span>Compensa?</span><strong>${v.compensa ? '✓ Sim' : '✕ Não'}</strong></div>
+                <div class="comp-line"><span>Potência Stage ${stageAtual}:</span><strong class="mono">${d.cv} cv (+${d.cv - v.cvOrig})</strong></div>
+                <div class="comp-line"><span>Torque Stage ${stageAtual}:</span><strong class="mono">${d.tq} kgfm (+${(d.tq - v.tqOrig).toFixed(1)})</strong></div>
+                <div class="comp-line"><span>Peso / Potência:</span><strong class="mono">${(v.pesoKg / d.cv).toFixed(2)} kg/cv</strong></div>
+                <div class="comp-line"><span>Confiabilidade:</span><strong class="mono">${vu}%</strong></div>
+                <div class="comp-line"><span>Viabilidade:</span><strong>${v.compensa ? '✓ Recomendada' : '✕ Baixo retorno'}</strong></div>
             </div>
         `;
     }).join('');
