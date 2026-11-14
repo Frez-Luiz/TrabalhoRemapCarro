@@ -4,280 +4,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX REMAP | Telemetria, Stages & Vida Útil</title>
+    <title>FrezPreparações | Telemetria de Carros, Camionetes e Motos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Barra Superior Fixa -->
+    <!-- Barra Superior -->
     <nav class="navbar">
         <div class="nav-brand">
-            <div class="logo">APEX<span>REMAP</span> <small>BLUE LAB</small></div>
+            <div class="logo">FREZ<span>PREPARAÇÕES</span> <small>TELEMETRIA</small></div>
             <div class="status-pill"><span class="dot"></span> <span id="status-texto">Java Online</span></div>
         </div>
 
         <div class="nav-tools">
-            <button id="btn-guia" class="btn-nav-outil" title="Entenda o que significa cada Stage">📘 Guia de
-                Stages</button>
-            <div class="font-controls" title="Tamanho da letra">
-                <button id="btn-font-dec" aria-label="Diminuir letra">A-</button>
-                <button id="btn-font-reset" aria-label="Letra normal">A</button>
-                <button id="btn-font-inc" aria-label="Aumentar letra">A+</button>
+            <button id="btn-guia" class="btn-tool">📘 Guia de Stages</button>
+            <div class="font-controls" title="Ajustar tamanho da fonte">
+                <button id="btn-font-dec" aria-label="Diminuir fonte">A-</button>
+                <button id="btn-font-reset" aria-label="Fonte normal">A</button>
+                <button id="btn-font-inc" aria-label="Aumentar fonte">A+</button>
             </div>
-            <button id="btn-tema" class="btn-tema">☀️ Modo Claro</button>
+            <button id="btn-tema" class="btn-tool">☀️ Tema Claro</button>
         </div>
     </nav>
 
-    <!-- Cabeçalho Limpo -->
+    <!-- Cabeçalho Hero -->
     <header class="hero">
-        <span class="hero-tag">SIMULADOR DE PREPARAÇÃO AUTOMOTIVA</span>
-        <h1>Descubra o Ganho Real e a <span>Vida Útil</span> do Seu Carro</h1>
-        <p>Escolha uma camionete ou esportivo, teste do Stage 1 ao Stage 4 e veja o impacto na durabilidade do motor.
-        </p>
+        <span class="hero-tag">ENGENHARIA DE PERFORMANCE & REMAP</span>
+        <h1>Simulador de Preparação <span>FrezPreparações</span></h1>
+        <p>Analise ganhos de Stage 1 a Stage 4, relação peso-potência e vida útil em camionetes, esportivos e motos.</p>
     </header>
 
     <main class="container">
-        <!-- PASSO 1: SELEÇÃO SIMPLIFICADA -->
-        <section class="card-clean">
-            <div class="passo-titulo">
-                <span class="passo-num">1</span>
-                <h2>Escolha o seu veículo</h2>
-            </div>
-
-            <div class="filtros-linha">
-                <div class="pills-categoria">
-                    <button class="btn-filtro ativo" data-cat="Todos">Todos (20)</button>
-                    <button class="btn-filtro" data-cat="Camionete">Camionetes</button>
-                    <button class="btn-filtro" data-cat="Esportivo">Esportivos</button>
-                    <button class="btn-filtro" data-cat="Compensa">✓ Só os que Compensam</button>
+        <!-- ETAPA 1: SELEÇÃO DO VEÍCULO -->
+        <section class="panel-box">
+            <div class="section-head">
+                <span class="step-badge">1</span>
+                <div>
+                    <h2>Selecione a Categoria e o Modelo</h2>
+                    <p class="section-sub">Filtre entre 65 modelos de camionetes, carros esportivos e motos</p>
                 </div>
-                <input type="text" id="input-busca" class="input-busca" placeholder="🔍 Buscar modelo ou motor...">
             </div>
 
-            <div class="selecao-linha">
-                <select id="select-carro">
-                    <option value="">Carregando veículos do servidor Java...</option>
+            <div class="filtros-grid">
+                <button class="btn-filtro ativo" data-cat="Todos">Todos (65)</button>
+                <button class="btn-filtro" data-cat="Camionete">🛻 Camionetes (25)</button>
+                <button class="btn-filtro" data-cat="Esportivo">🏎️ Esportivos (25)</button>
+                <button class="btn-filtro" data-cat="Moto Esportiva">🏍️ Motos Esportivas (8)</button>
+                <button class="btn-filtro" data-cat="Moto de Trilha">🚵 Motos de Trilha (7)</button>
+                <button class="btn-filtro" data-cat="Compensa">✓ Só os que Compensam</button>
+            </div>
+
+            <div class="busca-selecao-row">
+                <input type="text" id="input-busca" class="input-clean"
+                    placeholder="🔍 Digite o nome ou motor (ex: Hilux, GTI, CRF, S1000RR)...">
+                <select id="select-veiculo" class="select-clean">
+                    <option value="">Carregando catálogo do servidor Java...</option>
                 </select>
-                <button id="btn-analisar" class="btn-azul">SIMULAR AGORA</button>
-                <button id="btn-abrir-comparador" class="btn-outline">⚔️ Comparar 2 Carros</button>
+                <button id="btn-analisar" class="btn-primary">ANALISAR PROJETO</button>
             </div>
 
-            <div class="atalhos-box">
-                <span>Mais buscados:</span>
+            <div class="atalhos-row">
+                <span class="atalho-lbl">Acesso rápido:</span>
                 <div id="atalhos-lista" class="atalhos-chips"></div>
             </div>
         </section>
 
-        <!-- PASSO 2 E 3: RESULTADO E TELEMETRIA -->
-        <section id="painel-resultado" class="card-clean oculto">
-            <!-- Cabeçalho do Carro -->
-            <div class="veiculo-header">
+        <!-- ETAPA 2: PAINEL DE RESULTADOS ORGANIZADO EM ABAS -->
+        <section id="painel-resultado" class="panel-box oculto">
+            <!-- Resumo do Veículo Selecionado -->
+            <div class="veiculo-banner">
                 <div>
-                    <div class="badges-topo">
-                        <span id="tag-categoria" class="badge-azul">CATEGORIA</span>
-                        <span id="tag-tracao" class="badge-neutro">TRAÇÃO</span>
-                        <span id="tag-peso" class="badge-neutro">0 KG</span>
+                    <div class="badges-row">
+                        <span id="tag-categoria" class="badge-blue">CATEGORIA</span>
+                        <span id="tag-tracao" class="badge-soft">TRAÇÃO</span>
+                        <span id="tag-peso" class="badge-soft">0 KG</span>
                     </div>
-                    <h2 id="titulo-carro">Nome do Carro</h2>
-                    <p id="subtitulo-motor" class="motor-desc">Motor</p>
+                    <h2 id="titulo-veiculo">Nome do Veículo</h2>
+                    <p id="subtitulo-motor" class="motor-sub">Motorização</p>
                 </div>
-                <div id="selo-veredito" class="veredito-pill">VEREDITO</div>
+                <div id="selo-veredito" class="veredito-tag">VEREDITO</div>
             </div>
 
-            <!-- PASSO 2: SELETOR DE STAGE 1 A 4 -->
-            <div class="stage-selector-box">
-                <div class="passo-titulo menor">
-                    <span class="passo-num">2</span>
-                    <h3>Selecione o nível de preparação (Stage):</h3>
+            <!-- Seletor de Stage 1 a 4 -->
+            <div class="stage-container">
+                <div class="stage-top-info">
+                    <span class="step-badge">2</span>
+                    <strong>Escolha o Nível de Preparação (Stage 1 a 4):</strong>
                 </div>
-                <div class="stage-grid-botoes">
+                <div class="stages-4-grid">
                     <button class="btn-stage ativo" data-stage="1">
                         <strong>Stage 1</strong>
-                        <small>Só Software (ECU)</small>
+                        <span>Software / ECU</span>
                     </button>
                     <button class="btn-stage" data-stage="2">
                         <strong>Stage 2</strong>
-                        <small>Escape + Intake</small>
+                        <span>Escape + Filtro</span>
                     </button>
                     <button class="btn-stage" data-stage="3">
                         <strong>Stage 3</strong>
-                        <small>Turbina / Supercharger</small>
+                        <span>Turbina / Hardware</span>
                     </button>
                     <button class="btn-stage" data-stage="4">
                         <strong>Stage 4</strong>
-                        <small>Motor Forjado</small>
+                        <span>Forjado / Pista</span>
                     </button>
                 </div>
-                <p id="desc-stage-atual" class="stage-explicacao"></p>
+                <p id="desc-stage-atual" class="stage-desc"></p>
             </div>
 
-            <!-- PASSO 3: RESULTADOS DE POTÊNCIA E VIDA ÚTIL -->
-            <div class="kpis-4-col">
-                <div class="kpi-item">
-                    <span class="kpi-lbl">POTÊNCIA FINAL</span>
-                    <strong id="kpi-cv-final" class="kpi-num azul">0 cv</strong>
-                    <small id="kpi-cv-ganho">+0 cv (+0%)</small>
-                </div>
-                <div class="kpi-item">
-                    <span class="kpi-lbl">TORQUE FINAL</span>
-                    <strong id="kpi-tq-final" class="kpi-num azul">0 kgfm</strong>
-                    <small id="kpi-tq-ganho">+0 kgfm (+0%)</small>
-                </div>
-                <div class="kpi-item">
-                    <span class="kpi-lbl">PESO / POTÊNCIA</span>
-                    <strong id="kpi-peso-pot" class="kpi-num">0.0 kg/cv</strong>
-                    <small id="kpi-peso-orig">Original: 0.0 kg/cv</small>
-                </div>
-                <div class="kpi-item">
-                    <span class="kpi-lbl">CUSTO MÉDIO POR CV</span>
-                    <strong id="kpi-custo-cv" class="kpi-num">R$ 0/cv</strong>
-                    <small id="kpi-investimento">Investimento est.: R$ 0</small>
-                </div>
+            <!-- NAVEGAÇÃO POR ABAS (ORGANIZA AS INFORMAÇÕES SEM POLUIÇÃO) -->
+            <div class="tabs-bar" role="tablist">
+                <button class="tab-btn ativo" data-tab="tab-dyno">📊 Dinamômetro & Potência</button>
+                <button class="tab-btn" data-tab="tab-vidautil">🛡️ Vida Útil & Manutenção</button>
+                <button class="tab-btn" data-tab="tab-receita">🔧 Receita & Viabilidade</button>
+                <button class="tab-btn" data-tab="tab-comparar">⚔️ Comparar 2 Modelos</button>
             </div>
 
-            <!-- Barras de Dinamômetro -->
-            <div class="dyno-duplo">
-                <div class="dyno-box">
-                    <div class="dyno-head">
-                        <span>POTÊNCIA (CV)</span>
-                        <span id="badge-cv" class="tag-ganho">+0 cv</span>
+            <!-- ABA 1: DINAMÔMETRO & POTÊNCIA -->
+            <div id="tab-dyno" class="tab-content ativo">
+                <div class="kpis-grid">
+                    <div class="kpi-card">
+                        <span>POTÊNCIA FINAL</span>
+                        <strong id="kpi-cv-final" class="blue-text">0 cv</strong>
+                        <small id="kpi-cv-ganho">+0 cv (+0%)</small>
                     </div>
-                    <div class="barra-row">
-                        <div class="barra-txt"><span>Original</span><strong id="val-cv-orig">0 cv</strong></div>
-                        <div class="barra-bg">
-                            <div id="bar-cv-orig" class="barra-val orig"></div>
+                    <div class="kpi-card">
+                        <span>TORQUE FINAL</span>
+                        <strong id="kpi-tq-final" class="blue-text">0 kgfm</strong>
+                        <small id="kpi-tq-ganho">+0 kgfm (+0%)</small>
+                    </div>
+                    <div class="kpi-card">
+                        <span>PESO / POTÊNCIA</span>
+                        <strong id="kpi-peso-pot">0.0 kg/cv</strong>
+                        <small id="kpi-peso-orig">Original: 0.0 kg/cv</small>
+                    </div>
+                    <div class="kpi-card">
+                        <span>CUSTO POR CAVALO</span>
+                        <strong id="kpi-custo-cv">R$ 0/cv</strong>
+                        <small id="kpi-investimento">Investimento: R$ 0</small>
+                    </div>
+                </div>
+
+                <div class="dyno-bars-grid">
+                    <div class="dyno-card">
+                        <div class="dyno-header">
+                            <span>CURVA DE POTÊNCIA (CV)</span>
+                            <span id="badge-cv" class="gain-pill">+0 cv</span>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-labels"><span>Original</span><strong id="val-cv-orig">0 cv</strong></div>
+                            <div class="bar-track">
+                                <div id="bar-cv-orig" class="bar-fill orig"></div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-labels"><span id="lbl-stage-cv">Stage 1</span><strong id="val-cv-prep">0
+                                    cv</strong></div>
+                            <div class="bar-track">
+                                <div id="bar-cv-prep" class="bar-fill prep"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="barra-row">
-                        <div class="barra-txt"><span id="lbl-stage-cv">Stage 1</span><strong id="val-cv-prep">0
-                                cv</strong></div>
-                        <div class="barra-bg">
-                            <div id="bar-cv-prep" class="barra-val prep"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="dyno-box">
-                    <div class="dyno-head">
-                        <span>TORQUE (KGFM)</span>
-                        <span id="badge-tq" class="tag-ganho">+0 kgfm</span>
-                    </div>
-                    <div class="barra-row">
-                        <div class="barra-txt"><span>Original</span><strong id="val-tq-orig">0 kgfm</strong></div>
-                        <div class="barra-bg">
-                            <div id="bar-tq-orig" class="barra-val orig"></div>
+                    <div class="dyno-card">
+                        <div class="dyno-header">
+                            <span>CURVA DE TORQUE (KGFM)</span>
+                            <span id="badge-tq" class="gain-pill">+0 kgfm</span>
                         </div>
-                    </div>
-                    <div class="barra-row">
-                        <div class="barra-txt"><span id="lbl-stage-tq">Stage 1</span><strong id="val-tq-prep">0
-                                kgfm</strong></div>
-                        <div class="barra-bg">
-                            <div id="bar-tq-prep" class="barra-val prep"></div>
+                        <div class="bar-group">
+                            <div class="bar-labels"><span>Original</span><strong id="val-tq-orig">0 kgfm</strong></div>
+                            <div class="bar-track">
+                                <div id="bar-tq-orig" class="bar-fill orig"></div>
+                            </div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar-labels"><span id="lbl-stage-tq">Stage 1</span><strong id="val-tq-prep">0
+                                    kgfm</strong></div>
+                            <div class="bar-track">
+                                <div id="bar-tq-prep" class="bar-fill prep"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PAINEL DE VIDA ÚTIL & CONFIABILIDADE MECÂNICA -->
-            <div class="vida-util-card">
-                <div class="vu-header">
-                    <div>
-                        <h3>🛡️ Índice de Vida Útil & Confiabilidade Mecânica</h3>
-                        <p id="vu-subtitulo">Impacto estimado no motor, turbina e transmissão neste Stage</p>
+            <!-- ABA 2: VIDA ÚTIL & MANUTENÇÃO -->
+            <div id="tab-vidautil" class="tab-content oculto">
+                <div class="vu-panel">
+                    <div class="vu-top">
+                        <div>
+                            <h3>Índice de Durabilidade Mecânica</h3>
+                            <p>Estimativa de longevidade do motor, transmissão e sistema de sobrealimentação</p>
+                        </div>
+                        <span id="vu-nota" class="vu-pill">96% DE VIDA ÚTIL</span>
                     </div>
-                    <span id="vu-nota" class="vu-badge">95% DE VIDA ÚTIL</span>
-                </div>
 
-                <div class="vu-barra-container">
-                    <div id="vu-barra" class="vu-barra-fill" style="width: 95%"></div>
-                </div>
+                    <div class="vu-track">
+                        <div id="vu-barra" class="vu-fill" style="width: 96%"></div>
+                    </div>
 
-                <div class="vu-detalhes-grid">
-                    <div class="vu-item">
-                        <strong>Manutenção Preventiva:</strong>
-                        <span id="vu-oleo">Troca de óleo a cada 10.000 km</span>
-                    </div>
-                    <div class="vu-item">
-                        <strong>Ponto de Atenção:</strong>
-                        <span id="vu-alerta">Componentes originais suportam com folga.</span>
-                    </div>
-                    <div class="vu-item">
-                        <strong>Combustível Recomendado:</strong>
-                        <span id="vu-combustivel">Diesel S10 / Gasolina Comum ou Aditivada</span>
+                    <div class="vu-cards-3">
+                        <div class="vu-info-box">
+                            <strong>🛢️ Troca de Óleo</strong>
+                            <p id="vu-oleo">A cada 8.000 km</p>
+                        </div>
+                        <div class="vu-info-box">
+                            <strong>⚠️ Ponto de Atenção</strong>
+                            <p id="vu-alerta">Componentes originais suportam com folga.</p>
+                        </div>
+                        <div class="vu-info-box">
+                            <strong>⛽ Combustível Ideal</strong>
+                            <p id="vu-combustivel">Gasolina Aditivada / Diesel S10</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Parecer Técnico -->
-            <div class="parecer-duplo">
-                <div class="parecer-box">
-                    <h3>📋 Por que compensa (ou não)?</h3>
-                    <p id="texto-motivo"></p>
-                </div>
-                <div class="parecer-box borda-azul">
-                    <h3>🔧 Receita Recomendada</h3>
-                    <p id="texto-setup"></p>
+            <!-- ABA 3: RECEITA & VIABILIDADE -->
+            <div id="tab-receita" class="tab-content oculto">
+                <div class="receita-grid">
+                    <div class="receita-card">
+                        <h3>📋 Parecer da Engenharia FrezPreparações</h3>
+                        <p id="texto-motivo"></p>
+                    </div>
+                    <div class="receita-card highlight">
+                        <h3>🔧 Setup e Peças Recomendadas</h3>
+                        <p id="texto-setup"></p>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- COMPARADOR LADO A LADO -->
-        <section id="painel-comparador" class="card-clean oculto">
-            <div class="comp-topo">
-                <h2>⚔️ Comparador Lado a Lado</h2>
-                <div class="comp-controles-topo">
-                    <select id="comp-stage-select">
-                        <option value="1">Comparar em Stage 1</option>
-                        <option value="2">Comparar em Stage 2</option>
-                        <option value="3">Comparar em Stage 3</option>
-                        <option value="4">Comparar em Stage 4</option>
-                    </select>
-                    <button id="btn-fechar-comp" class="btn-fechar">✕ Fechar</button>
+            <!-- ABA 4: COMPARADOR LADO A LADO -->
+            <div id="tab-comparar" class="tab-content oculto">
+                <div class="comp-controls">
+                    <select id="comp-veiculo-a" class="select-clean"></select>
+                    <span class="vs-tag">VS</span>
+                    <select id="comp-veiculo-b" class="select-clean"></select>
                 </div>
+                <div id="comp-resultado" class="comp-duelo-grid"></div>
             </div>
-            <div class="comp-seletores">
-                <select id="comp-carro-a"></select>
-                <span class="vs-pill">VS</span>
-                <select id="comp-carro-b"></select>
-            </div>
-            <div id="comp-resultado" class="comp-colunas"></div>
         </section>
     </main>
 
     <!-- Modal Guia de Stages -->
     <div id="modal-guia" class="modal-overlay oculto">
-        <div class="modal-box">
-            <div class="modal-header">
-                <h3>📘 Entenda os Níveis de Preparação (Stages)</h3>
-                <button id="btn-fechar-guia" class="btn-fechar">✕</button>
+        <div class="modal-card">
+            <div class="modal-top">
+                <h3>📘 Guia Rápido de Preparação (Stages 1 a 4)</h3>
+                <button id="btn-fechar-guia" class="btn-close">✕</button>
             </div>
-            <div class="modal-body">
-                <div class="guia-item">
-                    <strong>Stage 1 (Apenas Reprogramação Eletrônica)</strong>
-                    <p>Ajuste nos mapas da injeção (pressão de turbo, ponto de ignição e mistura ar/combustível). Não
-                        troca nenhuma peça física. Mantém 95%+ da vida útil original.</p>
+            <div class="modal-list">
+                <div class="guia-row">
+                    <strong>Stage 1 — Reprogramação Eletrônica</strong>
+                    <p>Calibração via porta OBD2 ou bancada. Ajusta ponto, mistura e pressão sem trocar peças físicas.
+                        Preserva ~96% da vida útil.</p>
                 </div>
-                <div class="guia-item">
-                    <strong>Stage 2 (Software + Fluxo de Ar e Escape)</strong>
-                    <p>Adiciona Downpipe (elimina restrição do escapamento) e Filtro de ar esportivo (Intake). Melhora o
-                        som, reduz temperatura dos gases e libera mais potência.</p>
+                <div class="guia-row">
+                    <strong>Stage 2 — Escape + Admissão</strong>
+                    <p>Instalação de Downpipe/Escape esportivo e filtro de alto fluxo. Reduz contrapressão e temperatura
+                        de trabalho.</p>
                 </div>
-                <div class="guia-item">
-                    <strong>Stage 3 (Upgrade de Turbina / Compressor)</strong>
-                    <p>Substituição da turbina original por uma maior ou híbrida, além de intercooler e bicos injetores.
-                        Exige manutenção rigorosa e cuidado com o câmbio.</p>
+                <div class="guia-row">
+                    <strong>Stage 3 — Upgrade de Turbina / Compressor</strong>
+                    <p>Troca da turbina original por modelo maior ou híbrido, intercooler frontal e bicos injetores de
+                        maior vazão.</p>
                 </div>
-                <div class="guia-item">
-                    <strong>Stage 4 (Motor Forjado & Alta Performance)</strong>
-                    <p>Abertura do motor para instalação de pistões e bielas forjadas, reforço de câmbio e eletrônica
-                        programável. Focado em pista e arrancada.</p>
+                <div class="guia-row">
+                    <strong>Stage 4 — Motor Forjado & Competição</strong>
+                    <p>Pistões, bielas e prisioneiros forjados, reforço de câmbio/embreagem e eletrônica programável
+                        para pista.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="rodape">
-        <p>APEX REMAP • Projeto Técnico em Desenvolvimento de Sistemas (Java + JavaScript)</p>
+    <footer class="footer">
+        <p>FrezPreparações • Sistema Web & Servidor Java • Engenharia de Performance</p>
     </footer>
 
     <script src="script.js"></script>
