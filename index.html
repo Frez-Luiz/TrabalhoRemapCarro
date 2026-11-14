@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX REMAP | Telemetria & Engenharia de Performance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Barra de Navegação e Acessibilidade -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo">APEX<span>REMAP</span> <small>DYNO LAB 2.0</small></div>
+            <div class="status-pill"><span class="dot"></span> <span id="status-texto">Servidor Java Online</span></div>
+        </div>
+
+        <div class="nav-tools" aria-label="Ferramentas de Acessibilidade e Tema">
+            <div class="font-controls" title="Ajustar tamanho do texto">
+                <button id="btn-font-dec" aria-label="Diminuir fonte">A-</button>
+                <button id="btn-font-reset" aria-label="Tamanho padrão">A</button>
+                <button id="btn-font-inc" aria-label="Aumentar fonte">A+</button>
+            </div>
+            <button id="btn-tema" class="btn-tema" aria-label="Alternar tema claro ou escuro">
+                ☀️ Tema Claro
+            </button>
+        </div>
+    </nav>
+
+    <!-- Cabeçalho Hero -->
+    <header class="hero">
+        <div class="hero-badge">TELEMETRIA AUTOMOTIVA & ENGENHARIA DE ECU</div>
+        <h1>Descubra o Verdadeiro Potencial do Seu <span>Motor</span></h1>
+        <p>Simule ganhos de Stage 1 e Stage 2, analise a relação peso-potência e compare camionetes e esportivos em
+            tempo real.</p>
+    </header>
+
+    <main class="container">
+        <!-- Painel de Busca e Filtros -->
+        <section class="glass-card controle-panel">
+            <div class="filtros-topo">
+                <div class="filtros-categoria">
+                    <button class="btn-filtro ativo" data-cat="Todos">Todos (14)</button>
+                    <button class="btn-filtro" data-cat="Camionete">Camionetes</button>
+                    <button class="btn-filtro" data-cat="Esportivo">Esportivos</button>
+                    <button class="btn-filtro" data-cat="Compensa">✓ Só os que Compensam</button>
+                </div>
+
+                <div class="busca-rapida">
+                    <input type="text" id="input-busca"
+                        placeholder="🔍 Filtrar por nome ou motor (ex: V6, TSI, Hilux)...">
+                </div>
+            </div>
+
+            <div class="selecao-principal">
+                <select id="select-carro" aria-label="Selecione o modelo do carro">
+                    <option value="">Carregando frota do servidor Java...</option>
+                </select>
+                <button id="btn-analisar" class="btn-primario">⚡ SIMULAR NO DINAMÔMETRO</button>
+                <button id="btn-abrir-comparador" class="btn-secundario">⚔️ COMPARAR 2 CARROS</button>
+            </div>
+
+            <!-- Atalhos Rápidos (Pills clicáveis) -->
+            <div class="atalhos-wrap">
+                <span class="atalho-titulo">Destaques rápidos:</span>
+                <div id="atalhos-lista" class="atalhos-lista"></div>
+            </div>
+        </section>
+
+        <!-- Painel de Telemetria Principal -->
+        <section id="painel-resultado" class="glass-card painel-resultado oculto">
+            <div class="cabecalho-veiculo">
+                <div>
+                    <div class="tags-linha">
+                        <span id="tag-categoria" class="tag">CATEGORIA</span>
+                        <span id="tag-tracao" class="tag-sec">TRAÇÃO</span>
+                        <span id="tag-peso" class="tag-sec">0 KG</span>
+                    </div>
+                    <h2 id="titulo-carro">Nome do Veículo</h2>
+                    <p id="subtitulo-motor" class="motor-texto">Motorização</p>
+                </div>
+                <div id="selo-veredito" class="veredito">VEREDITO</div>
+            </div>
+
+            <!-- Seletor de Stage -->
+            <div class="stage-bar">
+                <span class="stage-label">Mapa de Injeção (ECU):</span>
+                <div class="stage-botoes">
+                    <button class="btn-stage ativo" data-stage="1">Stage 1 (Software)</button>
+                    <button class="btn-stage" data-stage="2">Stage 2 (Software + Hardware)</button>
+                </div>
+            </div>
+
+            <!-- Indicadores Rápidos (KPIs) -->
+            <div class="kpi-grid">
+                <div class="kpi-box">
+                    <span class="kpi-titulo">GANHO DE POTÊNCIA</span>
+                    <strong id="kpi-ganho-cv" class="kpi-valor verde">+0 cv</strong>
+                    <small id="kpi-pct-cv">+0% sobre original</small>
+                </div>
+                <div class="kpi-box">
+                    <span class="kpi-titulo">GANHO DE TORQUE</span>
+                    <strong id="kpi-ganho-tq" class="kpi-valor verde">+0 kgfm</strong>
+                    <small id="kpi-pct-tq">+0% de força</small>
+                </div>
+                <div class="kpi-box">
+                    <span class="kpi-titulo">PESO / POTÊNCIA</span>
+                    <strong id="kpi-peso-pot" class="kpi-valor">0.0 kg/cv</strong>
+                    <small id="kpi-peso-orig">Original: 0.0 kg/cv</small>
+                </div>
+            </div>
+
+            <!-- Barras de Dinamômetro -->
+            <div class="dyno-grid">
+                <div class="dyno-card">
+                    <div class="dyno-top">
+                        <span>POTÊNCIA NO MOTOR (CV)</span>
+                        <span id="badge-cv" class="badge-ganho">+0 cv</span>
+                    </div>
+                    <div class="barra-item">
+                        <div class="barra-info"><span>Original de Fábrica</span><strong id="val-cv-orig">0 cv</strong>
+                        </div>
+                        <div class="trilho">
+                            <div id="bar-cv-orig" class="preenchimento orig" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="barra-item">
+                        <div class="barra-info"><span id="lbl-stage-cv">Com Remap Stage 1</span><strong
+                                id="val-cv-prep">0 cv</strong></div>
+                        <div class="trilho">
+                            <div id="bar-cv-prep" class="preenchimento prep" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dyno-card">
+                    <div class="dyno-top">
+                        <span>TORQUE MÁXIMO (KGFM)</span>
+                        <span id="badge-tq" class="badge-ganho">+0 kgfm</span>
+                    </div>
+                    <div class="barra-item">
+                        <div class="barra-info"><span>Original de Fábrica</span><strong id="val-tq-orig">0 kgfm</strong>
+                        </div>
+                        <div class="trilho">
+                            <div id="bar-tq-orig" class="preenchimento orig" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="barra-item">
+                        <div class="barra-info"><span id="lbl-stage-tq">Com Remap Stage 1</span><strong
+                                id="val-tq-prep">0 kgfm</strong></div>
+                        <div class="trilho">
+                            <div id="bar-tq-prep" class="preenchimento prep" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parecer Técnico -->
+            <div class="parecer-grid">
+                <div class="parecer-card">
+                    <h3>📊 Análise de Engenharia & Custo-Benefício</h3>
+                    <p id="texto-motivo"></p>
+                </div>
+                <div class="parecer-card destaque">
+                    <h3>🔧 Setup Recomendado pela Oficina</h3>
+                    <p id="texto-setup"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Módulo Comparador Lado a Lado -->
+        <section id="painel-comparador" class="glass-card painel-comparador oculto">
+            <div class="comp-header">
+                <h2>⚔️ Comparativo de Preparação (Stage 1)</h2>
+                <button id="btn-fechar-comp" class="btn-fechar">✕ Fechar</button>
+            </div>
+            <div class="comp-seletores">
+                <select id="comp-carro-a"></select>
+                <span class="vs-badge">VS</span>
+                <select id="comp-carro-b"></select>
+            </div>
+            <div id="comp-resultado" class="comp-grid"></div>
+        </section>
+    </main>
+
+    <footer class="rodape">
+        <p>Projeto Técnico em Desenvolvimento de Sistemas • Backend Java HTTP Server + Frontend JS/CSS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
